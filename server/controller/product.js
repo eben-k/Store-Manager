@@ -10,9 +10,6 @@ const getProducts = (req, res) => {
     products,
   });
 };
-export default {
-  getProducts,
-
 
 // post a new product
 const createProduct = (req, res) => {
@@ -41,5 +38,5 @@ const createProduct = (req, res) => {
 };
 export default {
   createProduct,
-
+  getProducts,
 };

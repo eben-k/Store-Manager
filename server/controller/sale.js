@@ -1,7 +1,6 @@
 import database from '../models/sale';
 
 const db = database;
-
 // post a new sale
 const createSale = (req, res) => {
   // return error if a field is missing
@@ -28,6 +27,18 @@ const createSale = (req, res) => {
     saleId: db.ids,
   });
 };
+
+// return all available sales records
+const getSaleRecords = (req, res) => {
+  const saleRecords = db.getSales();
+  res.status(200).json({
+    message: 'Success: Attendant Records',
+    saleRecords,
+  });
+};
+
+
 export default {
+  getSaleRecords,
   createSale,
 };
