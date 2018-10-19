@@ -4,7 +4,7 @@
   "description": "Help store owners manage sales and product inventory records. Single store use.",
   "main": "app.js",
   "scripts": {
-    "start": "node dist/app.js",
+    "start": "node server/app.js",
     "start:dev": "nodemon --exec babel-node server/app.js",
     "test": "nyc mocha --compilers js:babel-register server/test --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
