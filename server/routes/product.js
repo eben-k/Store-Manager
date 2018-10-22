@@ -5,4 +5,7 @@ const route = express.Router();
 
 route.get('/', productController.getProducts);
 
+route.post('/', productController.createProduct);
+
+
 export default route;
