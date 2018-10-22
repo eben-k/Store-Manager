@@ -2,6 +2,18 @@ import database from '../models/product';
 
 const db = database;
 
+// return all available products
+const getProducts = (req, res) => {
+  const products = db.getProducts();
+  res.status(200).json({
+    message: 'Success: Products in stock',
+    products,
+  });
+};
+export default {
+  getProducts,
+
+
 // post a new product
 const createProduct = (req, res) => {
   // return error if a field is missing
@@ -29,4 +41,5 @@ const createProduct = (req, res) => {
 };
 export default {
   createProduct,
+
 };
