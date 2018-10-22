@@ -21,6 +21,7 @@ describe('API endpoints test', () => {
   });
 
 
+
   // create sale record
   describe('CREATE sale record', () => {
     it('should create a new sale record', (done) => {
@@ -35,6 +36,21 @@ describe('API endpoints test', () => {
         .request(server)
         .post('/api/v1/sales')
         .send(sale)
+
+  // create product
+  describe('CREATE product', () => {
+    it('should create a new product', (done) => {
+      const product = {
+        id: 0,
+        name: 'Pampers Baby Diapers',
+        category: 'baby products',
+        quantity: '10 boxes',
+        price: '$10',
+      }; chai
+        .request(server)
+        .post('/api/v1/products')
+        .send(product)
+
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.have.property('message');
@@ -43,6 +59,7 @@ describe('API endpoints test', () => {
     });
 
     it('should return a status code 400 if a required field is missing', (done) => {
+
       const sale = {
         id: 0,
         name: 'Pampers Baby Diapers',
@@ -53,6 +70,18 @@ describe('API endpoints test', () => {
         .request(server)
         .post('/api/v1/sales')
         .send(sale)
+
+      const product = {
+        id: 0,
+        name: 'Pampers Baby Diapers',
+        category: 'baby products',
+        quantity: '10 boxes',
+      };
+      chai
+        .request(server)
+        .post('/api/v1/products')
+        .send(product)
+
         .end((err, res) => {
           res.should.have.status(400);
           res.body.should.have.property('error');
