@@ -1,9 +1,9 @@
-// class Product {
-//   // constructor
-//   constructor(productId) {
-//     this.id = productId;
-//   }
-// }
+class Product {
+  // constructor
+  constructor(productId) {
+    this.id = productId;
+  }
+}
 
 class Db {
   constructor() {
@@ -17,35 +17,6 @@ class Db {
   //   this.ids += 1;
   //   return this.ids;
   // }
-
-  // add a product
-  // addProduct(prodName, prodCategory, stckQuantity, unitPrice) {
-  //   const product = new Product(this.genId());
-  //   product.name = prodName;
-  //   product.category = prodCategory;
-  //   product.quantity = stckQuantity;
-  //   product.price = unitPrice;
-
-  //   this.products.push(product);
-
-  //   return product.id;
-  // }
-
-  // return all available products
-  // getProducts() {
-  //   return this.products;
-  // }
-
-  // returns specific product with given product_id
-  getProduct(productId) {
-    let i;
-    for (i = 0; i < this.products.length; i += 1) {
-      if (this.products[i].id === productId) {
-        return this.products[i];
-      }
-    }
-    return undefined;
-  }
 
   makeTestData() {
     // add some initial data
@@ -74,7 +45,36 @@ class Db {
 
     });
   }
+
+  // add a product
+  addProduct(prodName, prodCategory, stckQuantity, unitPrice) {
+    const product = new Product(this.ids);
+    product.name = prodName;
+    product.category = prodCategory;
+    product.quantity = stckQuantity;
+    product.price = unitPrice;
+
+    this.products.push(product);
+    this.ids += 1;
+    return product.id;
+  }
+
+  getProducts() {
+    return this.products;
+  }
+
+  // returns specific product with given product_id
+  getProduct(productId) {
+    let i;
+    for (i = 0; i < this.products.length; i += 1) {
+      if (this.products[i].id === productId) {
+        return this.products[i];
+      }
+    }
+    return undefined;
+  }
 }
+
 const db = new Db();
 
 export default db;
