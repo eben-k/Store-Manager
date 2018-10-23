@@ -1,104 +1,135 @@
-import chai from 'chai';
-import chaiHttp from 'chai-http';
+import { expect } from 'chai';
+import request from 'supertest';
 import 'chai/register-should';
 import server from '../server/app';
 
 
-chai.use(chaiHttp);
+// chai.use(chaiHttp);
 
 describe('API endpoints test', () => {
   describe('default route test /api/v1/', () => {
     it('should return Welcome to Store Manager!', (done) => {
-      chai
-        .request(server)
+      // chai
+      request(server)
         .get('/api/v1/')
         .end((err, res) => {
-          res.should.have.status(200);
-          res.body.should.have.property('message');
-          res.body.message.should.eql('Welcome to Store Manager!');
-        });
-      done();
-    });
-  });
-
-  describe('GET all products api/v1/products', () => {
-    it('should return all available products', (done) => {
-      chai
-        .request(server)
-        .get('/api/v1/products')
-        .end((err, res) => {
-          res.should.have.status(200);
-          res.body.should.have.property('message');
-          res.body.products.should.be.a('array');
+          expect(res.status).to.equal(200);
+          // res.body.should.have.property('message');
+          expect(res.body).to.equal('Welcome to Store Manager!');
           done();
         });
+    });
+  });
+});
+
+
+describe('GET all products api/v1/products', () => {
+  it('should return all available products', (done) => {
+    // chai
+    request(server)
+      .get('/api/v1/products')
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body.message).to.equal('Success: Products in stock');
+        expect(res.body.products).to.be.an('array');
+        done();
       });
+  });
+});
 
-  // create sale record
-  describe('CREATE sale record', () => {
-    it('should create a new sale record', (done) => {
-      const sale = {
-        id: 0,
-        name: 'Pampers Baby Diapers',
-        date: '3/4/2018',
-        quantity: '10',
-        price: '$23',
-        total: '230',
-      };
-      chai
-        .request(server)
-        .post('/api/v1/sales')
-        .send(sale)
+// create sale record
+describe('CREATE sale record', () => {
+  it('should return a status code 400 if a required field is missing', (done) => {
+    const sale = {
+      id: 0,
+      name: 'Pampers Baby Diapers',
+      date: '3/4/2018',
+      quantity: '10',
+    };
+    // chai
+    request(server)
+      .post('/api/v1/sales')
+      .send(sale)
+      .end((err, res) => {
+        expect(res.status).to.equal(400);
+        expect(res.body.error).to.equal('check missing field');
+        done();
+      });
+  });
 
-  // create product
-  describe('CREATE product', () => {
-    it('should create a new product', (done) => {
-      const product = {
-        id: 0,
-        name: 'Pampers Baby Diapers',
-        category: 'baby products',
-        quantity: '10 boxes',
-        price: '$10',
-      }; chai
-        .request(server)
-        .post('/api/v1/products')
-        .send(product)
-        .end((err, res) => {
-          res.should.have.status(200);
-          res.body.should.have.property('message');
-        });
-      done();
-    });
+  it('should create a new sale record', (done) => {
+    const sale = {
+      id: 0,
+      name: 'Pampers Baby Diapers',
+      date: '3/4/2018',
+      quantity: '10',
+      price: '$23',
+      total: '230',
+    }; // chai
+    request(server)
+      .post('/api/v1/sales')
+      .send(sale)
 
-    it('should return a status code 400 if a required field is missing', (done) => {
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body.message).to.equal('Success! Sale recorded!');
+        done();
+      });
+  });
+});
 
-      const sale = {
-        id: 0,
-        name: 'Pampers Baby Diapers',
-        date: '3/4/2018',
-        quantity: '10',
-      };
-      chai
-        .request(server)
-        .post('/api/v1/sales')
-        .send(sale)
+// create product
+describe('CREATE product', () => {
+  it('should create a new product', (done) => {
+    const product = {
+      id: 0,
+      name: 'Pampers Baby Diapers',
+      category: 'baby products',
+      quantity: '10 boxes',
+      price: '$10',
+    };
+    // chai
+    request(server)
+      .post('/api/v1/products')
+      .send(product)
 
-      const product = {
-        id: 0,
-        name: 'Pampers Baby Diapers',
-        category: 'baby products',
-        quantity: '10 boxes',
-      };
-      chai
-        .request(server)
-        .post('/api/v1/products')
-        .send(product)
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body.message).to.equal('Success! Product added');
+        done();
+      });
+  });
 
-        .end((err, res) => {
-          res.should.have.status(400);
-          res.body.should.have.property('error');
-        });
-      done();
-    });
+  it('should return a status code 400 if a required field is missing', (done) => {
+    const product = {
+      id: 0,
+      name: 'Pampers Baby Diapers',
+      category: 'baby products',
+      quantity: '10 boxes',
+    };
+    // chai
+    request(server)
+      .post('/api/v1/products')
+      .send(product)
+
+      .end((err, res) => {
+        expect(res.status).to.equal(400);
+        expect(res.body.error).to.equal('check missing field');
+        done();
+      });
+  });
+});
+
+describe('GET all sale records api/v1/sales', () => {
+  it('should return all available sales records', (done) => {
+    // chai
+    request(server)
+      .get('/api/v1/sales')
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body.message).to.equal('Success: Sale Records');
+        expect(res.body.saleRecords).to.be.an('array');
+        done();
+      });
   });
 });

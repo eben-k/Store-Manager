@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/api/v1/sales', saleRoutes);
 app.use('/api/v1/products', productRoutes);
 app.use('/api/v1/', (req, res) => {
-  res.status(200).json({ message: 'Welcome to Store Manager!' });
+  res.status(200).json('Welcome to Store Manager!');
 });
 
 app.get('/', (req, res) => res.send('Hello World'));

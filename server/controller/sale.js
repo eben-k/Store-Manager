@@ -7,7 +7,7 @@ const createSale = (req, res) => {
   if (!req.body.name || !req.body.date || !req.body.quantity
     || !req.body.price || !req.body.total) {
     return res.status(400).json({
-      error: 'missing field',
+      error: 'check missing field',
     });
   }
   // create new sale record
@@ -32,7 +32,7 @@ const createSale = (req, res) => {
 const getSaleRecords = (req, res) => {
   const saleRecords = db.getSales();
   res.status(200).json({
-    message: 'Success: Attendant Records',
+    message: 'Success: Sale Records',
     saleRecords,
   });
 };
