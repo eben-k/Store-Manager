@@ -1,9 +1,9 @@
-// class Product {
-//   // constructor
-//   constructor(productId) {
-//     this.id = productId;
-//   }
-// }
+class Product {
+  // constructor
+  constructor(productId) {
+    this.id = productId;
+  }
+}
 
 class Db {
   constructor() {
@@ -32,9 +32,7 @@ class Db {
   // }
 
   // return all available products
-  // getProducts() {
-  //   return this.products;
-  // }
+
 
   // returns specific product with given product_id
   getProduct(productId) {
@@ -45,6 +43,9 @@ class Db {
       }
     }
     return undefined;
+
+  getProducts() {
+    return this.products;
   }
 
   makeTestData() {
@@ -73,6 +74,35 @@ class Db {
       price: '$50',
 
     });
+  }
+
+  // returns specific product with given product_id
+  // getProduct(productId) {
+  //   let i;
+  //   for (i = 0; i < this.products.length; i += 1) {
+  //     if (this.products[i].id === productId) {
+  //       return this.products[i];
+  //     }
+  //   }
+  //   return 0;
+  // }
+
+  //   this.ids = 3;
+  //   this.makeTestData();
+  // }
+
+
+  // add a product
+  addProduct(prodName, prodCategory, stckQuantity, unitPrice) {
+    const product = new Product(this.ids);
+    product.name = prodName;
+    product.category = prodCategory;
+    product.quantity = stckQuantity;
+    product.price = unitPrice;
+
+    this.products.push(product);
+    this.ids += 1;
+    return product.id;
   }
 }
 const db = new Db();
