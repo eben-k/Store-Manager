@@ -11,6 +11,7 @@
     "build": "rm -rf dist && babel server -d dist --presets=env",
     "heroku-postbuild": "npm run build",
     "babel-node": "babel-node --presets"
+
   },
   "repository": {
     "type": "git",
