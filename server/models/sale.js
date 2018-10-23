@@ -7,11 +7,10 @@ class Sale {
 
 class Db {
   constructor() {
-    this.sales = []; // available rides
+    this.sales = []; // available sales records
     this.ids = 3;
     this.makeTestData();
   }
-
 
   // add a product
   addSale(prodName, saleDate, soldQuantity, unitPrice, total) {
@@ -56,6 +55,11 @@ class Db {
       price: '$200',
       total: '$400',
     });
+  }
+
+  // return all available sales records
+  getSales() {
+    return this.sales;
   }
 }
 const db = new Db();

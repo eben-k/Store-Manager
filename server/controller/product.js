@@ -10,9 +10,6 @@ const getProducts = (req, res) => {
     products,
   });
 };
-export default {
-  getProducts,
-
 
 // post a new product
 const createProduct = (req, res) => {
@@ -20,7 +17,7 @@ const createProduct = (req, res) => {
   if (!req.body.name || !req.body.category || !req.body.quantity
     || !req.body.price) {
     return res.status(400).json({
-      error: 'missing field',
+      error: 'check missing field',
     });
   }
   // create new product
@@ -41,5 +38,5 @@ const createProduct = (req, res) => {
 };
 export default {
   createProduct,
-
+  getProducts,
 };
