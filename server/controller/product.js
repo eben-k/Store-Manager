@@ -26,6 +26,7 @@ const getProducts = (req, res) => {
   });
 };
 
+
 // post a new product
 const createProduct = (req, res) => {
   // return error if a field is missing
@@ -51,6 +52,8 @@ const createProduct = (req, res) => {
     productId: db.ids,
   });
 };
+
+
 export default {
   createProduct,
   getProducts,

@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import saleRoutes from './routes/sale';
+// import saleRoutes from './routes/sale';
 import productRoutes from './routes/product';
 
 
@@ -10,11 +10,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-
-app.use('/api/v1/sales', saleRoutes);
+// app.use('/api/v1/sales', saleRoutes);
 app.use('/api/v1/products', productRoutes);
-app.use('/api/v1/:productId', productRoutes);
-app.use('/api/v1/:employeeId', saleRoutes);
 app.use('/api/v1/', (req, res) => {
   res.status(200).json('Welcome to Store Manager!');
 });

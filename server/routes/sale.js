@@ -1,11 +1,13 @@
-import express from 'express';
-import saleController from '../controller/sale';
+// import express from 'express';
+// import saleController from '../controller/sale';
 
-const route = express.Router();
+// const route = express.Router();
 
-route.get('/:employeeId', saleController.getSpecificRecord);
-route.post('/', saleController.createSale);
-route.get('/', saleController.getSaleRecords);
+// route.get('/api/v1/sales/:employeeId', saleController.getSpecificRecord);
+
+// route.get('/api/v1/sales', saleController.getSaleRecords);
+
+// route.post('/api/v1/sales', saleController.createSale);
 
 
-export default route;
+// export default route;
