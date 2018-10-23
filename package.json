@@ -6,11 +6,12 @@
   "scripts": {
     "start": "node dist/app.js",
     "start:dev": "nodemon --exec npm run babel-node -- server/app.js",
+
     "test": "nyc mocha --compilers js:babel-register ./test --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "build": "rm -rf dist && babel server -d dist --presets=env",
     "heroku-postbuild": "npm run build",
-    "babel-node": "babel-node --presets=env"
+    "babel-node": "babel-node --presets
   },
   "repository": {
     "type": "git",

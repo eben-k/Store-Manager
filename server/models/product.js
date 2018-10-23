@@ -5,11 +5,9 @@ class Product {
   }
 }
 
-
 class Db {
   constructor() {
     this.products = []; // available rides
-
     this.ids = 0;
     this.makeTestData();
   }
@@ -34,6 +32,18 @@ class Db {
   // }
 
   // return all available products
+
+
+  // returns specific product with given product_id
+  getProduct(productId) {
+    let i;
+    for (i = 0; i < this.products.length; i += 1) {
+      if (this.products[i].id === productId) {
+        return this.products[i];
+      }
+    }
+    return undefined;
+
   getProducts() {
     return this.products;
   }
@@ -41,7 +51,7 @@ class Db {
   makeTestData() {
     // add some initial data
     this.products[0] = {
-      id: 0,
+      id: 1,
       name: 'Pampers Baby Diapers',
       category: 'baby products',
       quantity: '10 boxes',
@@ -49,7 +59,7 @@ class Db {
     };
 
     this.products.push({
-      id: 1,
+      id: 2,
       name: 'Colgate Toothpaste',
       category: 'Personal products',
       quantity: '15 boxes',
@@ -57,11 +67,12 @@ class Db {
     });
 
     this.products.push({
-      id: 2,
+      id: 3,
       name: 'Nike Air Sandals',
       category: 'footwear',
       quantity: '14 pairs',
       price: '$50',
+
     });
   }
 
