@@ -3,6 +3,6 @@ import productController from '../controller/product';
 
 const route = express.Router();
 
-route.get('/:productId', productController.getSpecificProduct);
+route.get('/products/:productId', productController.getSpecificProduct);
 
 export default route;
