@@ -22,6 +22,29 @@ describe('API endpoints test', () => {
   });
 });
 
+describe('GET single product', () => {
+  it('should return product with given id', (done) => {
+    // chai
+    request(server)
+      .get('/api/v1/products/1')
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body.message).to.equal('Success! Product available');
+      });
+    done();
+  });
+
+  it('should return 404 error if product not found', (done) => {
+    // chai
+    request(server)
+      .get('/api/v1/products/-1')
+      .end((err, res) => {
+        expect(res.status).to.equal(404);
+        expect(res.body.error).to.equal('no product with id - -1 found');
+      });
+    done();
+  });
+});
 
 describe('GET all products api/v1/products', () => {
   it('should return all available products', (done) => {
