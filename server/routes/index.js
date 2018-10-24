@@ -1,8 +1,8 @@
 import express from 'express';
 import productController from '../controller/product';
 import saleController from '../controller/sale';
-import ProductValidator from '../middleware/prodValidator';
-import SaleValidator from '../middleware/saleValidator';
+import ProductValidator from '../middleware/ProdValidator';
+import SaleValidator from '../middleware/SaleValidator';
 
 const { addProductValidator } = ProductValidator;
 const { addSaleValidator } = SaleValidator;
