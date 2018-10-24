@@ -36,20 +36,7 @@ const createSale = (req, res) => {
     price: req.body.price,
     total: req.body.total,
   };
-  // Validate Sale details
-  if (
-    !newSale.attendant
-    || !newSale.name
-    || !newSale.date
-    || !newSale.quantity
-    || !newSale.price
-    || !newSale.total
 
-  ) {
-    return res.status(400).send({
-      error: 'Error!! check required fields',
-    });
-  }
   saleRecords.push(newSale);
   return res.status(201).json({
     message: 'Sale has been succesfully recorded',

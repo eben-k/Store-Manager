@@ -33,17 +33,7 @@ const createProduct = (req, res) => {
     quantity: req.body.quantity,
     price: req.body.price,
   };
-  if (
-    !newProduct.name
-    || !newProduct.category
-    || !newProduct.quantity
-    || !newProduct.price
 
-  ) {
-    return res.status(400).send({
-      error: 'Error!! check missing fields',
-    });
-  }
   availableProducts.push(newProduct);
   return res.status(201).json({
     message: 'Success! Product added',
