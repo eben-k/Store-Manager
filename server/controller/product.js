@@ -1,61 +1,57 @@
-import database from '../models/product';
+import db from '../models/product';
 
-const db = database;
+const availableProducts = db;
 
-// return a specific product
-const getSpecificProduct = (req, res) => {
-  const id = parseInt(req.params.productId, 10);
-  const product = db.getProduct(id);
-  if (product === undefined || !product) {
+
+// Get all products
+const getProducts = (req, res) => {
+  res.status(200).json({
+    message: 'Success: Products in stock',
+    products: availableProducts,
+  });
+};
+
+// Get a single product
+const getSingleProduct = (req, res) => {
+  const id = Number(req.params.prodId);
+  const availableProduct = availableProducts.find(product => product.prodId === id);
+  if (availableProduct === undefined) {
     return res.status(404).json({
-      error: `no product with id - ${id} found`,
+      message: `no product with id - ${id} found, Please enter a valid product Id`,
     });
   }
   return res.status(200).json({
     message: 'Success! Product available',
-    product,
+    availableProduct,
   });
 };
-
-// return all available products
-const getProducts = (req, res) => {
-  const products = db.getProducts();
-  res.status(200).json({
-    message: 'Success: Products in stock',
-    products,
-  });
-};
-
-
-// post a new product
 const createProduct = (req, res) => {
-  // return error if a field is missing
-  if (!req.body.name || !req.body.category || !req.body.quantity
-    || !req.body.price) {
-    return res.status(400).json({
-      error: 'check missing field',
+  const newProduct = {
+    prodId: availableProducts.length + 1,
+    name: req.body.name,
+    category: req.body.category,
+    quantity: req.body.quantity,
+    price: req.body.price,
+  };
+  if (
+    !newProduct.name
+    || !newProduct.category
+    || !newProduct.quantity
+    || !newProduct.price
+
+  ) {
+    return res.status(400).send({
+      error: 'Error!! check missing fields',
     });
   }
-  // create new product
-  const newProduct = {
-    name: req.body.prodName,
-    category: req.body.prodCategory,
-    quantity: req.body.stckQuantity,
-    price: req.body.unitPrice,
-  };
-
-
-  db.addProduct(newProduct.name, newProduct.category,
-    newProduct.quantity, newProduct.price);
-  return res.status(200).json({
+  availableProducts.push(newProduct);
+  return res.status(201).json({
     message: 'Success! Product added',
-    productId: db.ids,
+    newProduct,
   });
 };
-
-
 export default {
   createProduct,
   getProducts,
-  getSpecificProduct,
+  getSingleProduct,
 };

@@ -1,69 +1,63 @@
-// import database from '../models/sale';
+import db from '../models/sale';
 
-// const db = database;
+const saleRecords = db;
 
+// Get all records
+const getSales = (req, res) => {
+  res.status(200).json({
+    message: 'Success: Sale Records',
+    sales: saleRecords,
+  });
+};
 
-// // return a specific sale record
-// const getSpecificRecord = (req, res) => {
-//   const id = parseInt(req.params.saleId, 10);
-//   const record = db.getAttendant(id);
-//   if (record === undefined || !record) {
-//     return res.status(404).json({
-//       error: `attendant with id - ${id} not found`,
-//     });
-//   }
-//   return res.status(200).json({
-//     message: 'Success! Record available',
-//     record,
-//   });
-// };
+// Get a single sale record
+const getSingleRecord = (req, res) => {
+  const id = Number(req.params.saleId);
+  const saleRecord = saleRecords.find(sale => sale.saleId === id);
+  if (saleRecord === undefined) {
+    return res.status(404).json({
+      error: `no record with id - ${id} found, enter a valid sale Id`,
+    });
+  }
+  return res.status(200).json({
+    message: 'Success! Sale Record',
+    saleRecord,
+  });
+};
 
+const createSale = (req, res) => {
+  // new sale record Object
+  const newSale = {
+    saleId: saleRecords.length + 1,
+    attendant: req.body.attendant,
+    name: req.body.name,
+    date: req.body.date,
+    quantity: req.body.quantity,
+    price: req.body.price,
+    total: req.body.total,
+  };
+  // Validate Sale details
+  if (
+    !newSale.attendant
+    || !newSale.name
+    || !newSale.date
+    || !newSale.quantity
+    || !newSale.price
+    || !newSale.total
 
-// // post a new sale
-// const createSale = (req, res) => {
-//   // return error if a field is missing
-//   if (!req.body.name || !req.body.date || !req.body.quantity
-//     || !req.body.price || !req.body.total) {
-//     return res.status(400).json({
-//       error: 'check missing field',
-//     });
-//   }
-//   // create new sale record
-//   const newSale = {
-//     name: req.body.prodName,
-//     date: req.body.saleDate,
-//     quantity: req.body.soldQuantity,
-//     price: req.body.unitPrice,
-//     total: req.body.total,
-//   };
-//   // return error if a field is missing
-//   if (!req.body.name || !req.body.date || !req.body.quantity
-//     || !req.body.price || !req.body.total) {
-//     return res.status(400).json({
-//       error: 'check missing field',
-//     });
-//   }
-
-//   db.addSale(newSale.name, newSale.date,
-//     newSale.quantity, newSale.price, newSale.total);
-//   return res.status(200).json({
-//     message: 'Success! Sale recorded!',
-//     saleId: db.ids,
-//   });
-// };
-
-// // return all available sales records
-// const getSaleRecords = (req, res) => {
-//   const saleRecords = db.getSales();
-//   res.status(200).json({
-//     message: 'Success: Sale Records',
-//     saleRecords,
-//   });
-// };
-
-
-// export default {
-//   getSaleRecords,
-//   createSale,
-//   getSpecificRecord,
-// };
+  ) {
+    return res.status(400).send({
+      error: 'Error!! check required fields',
+    });
+  }
+  saleRecords.push(newSale);
+  return res.status(201).json({
+    message: 'Sale has been succesfully recorded',
+    newSale,
+  });
+};
+export default {
+  getSales,
+  createSale,
+  getSingleRecord,
+};
