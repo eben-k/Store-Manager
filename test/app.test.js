@@ -87,24 +87,6 @@ describe('GET all products api/v1/products', () => {
 
 // create sale record
 describe('CREATE sale record', () => {
-  it('should return a status code 400 if a required field is missing', (done) => {
-    const sale = {
-      id: 0,
-      name: 'Pampers Baby Diapers',
-      date: '3/4/2018',
-      quantity: '10',
-    };
-    // chai
-    request(server)
-      .post('/api/v1/sales')
-      .send(sale)
-      .end((err, res) => {
-        expect(res.status).to.equal(400);
-        expect(res.body.error).to.equal('Error!! check required fields');
-        done();
-      });
-  });
-
   it('should create a new sale record', (done) => {
     const sale = {
       id: 0,
@@ -145,25 +127,6 @@ describe('CREATE product', () => {
       .end((err, res) => {
         expect(res.status).to.equal(201);
         expect(res.body.message).to.equal('Success! Product added');
-        done();
-      });
-  });
-
-  it('should return a status code 400 if a required field is missing', (done) => {
-    const product = {
-      id: 0,
-      name: 'Pampers Baby Diapers',
-      category: 'baby products',
-      quantity: '10 boxes',
-    };
-    // chai
-    request(server)
-      .post('/api/v1/products')
-      .send(product)
-
-      .end((err, res) => {
-        expect(res.status).to.equal(400);
-        expect(res.body.error).to.equal('Error!! check missing fields');
         done();
       });
   });
