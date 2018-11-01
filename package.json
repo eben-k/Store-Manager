@@ -4,12 +4,12 @@
   "description": "Help store owners manage sales and product inventory records. Single store use.",
   "main": "app.js",
   "scripts": {
-    "start": "babel-node server/app.js",
-    "start:dev": "nodemon --exec npm run babel-node -- server/app.js",
+    "start": "babel-node ./server/app.js",
+    "start:dev": "nodemon --exec npm run babel-node -- ./server/app.js",
     "test": "npm run dropTable && nyc mocha --compilers js:babel-register ./test --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "build": "rm -rf dist && babel server -d dist --presets=env",
-    "db-create": "psql -U postgres -f server/database/models/database.sql",
+    "db-create": "psql -U postgres -f ./server/database/models/database.sql",
     "heroku-postbuild": "npm run build",
     "babel-node": "babel-node --presets=env",
     "dropTable": "babel-node ./test/dropTable.js --exit"
@@ -46,7 +46,7 @@
     "express-validator": "^5.3.0",
     "jsonwebtoken": "^8.3.0",
     "pg": "^7.6.0",
-    "@babel/core": "^7.1.2",
+    "babel/core": "^7.1.2",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0"
   }
