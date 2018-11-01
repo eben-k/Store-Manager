@@ -11,7 +11,7 @@ import saleDb from '../database/controller/saleDb';
 const { addProductValidator } = ProductValidator;
 const { addSaleValidator } = SaleValidator;
 
-const { createUser, logInUser } = Users;
+const { createUser, getAllUsers, logInUser } = Users;
 const {
   createProduct, getAllProducts, getOneProduct, modifyProduct, deleteProduct,
 } = productDb;
@@ -32,6 +32,7 @@ route.get('/api/v2/products/:prodId', tokenVerify, getOneProduct);
 
 route.post('/auth/signup', checkSignup, createUser);
 route.post('/auth/login', checkLogin, logInUser);
+route.get('/auth/users', getAllUsers)
 
 route.post('/api/v2/sales', tokenVerify, addSaleValidator, createSale);
 route.get('/api/v2/sales', tokenVerify, getAllSaleRecords);

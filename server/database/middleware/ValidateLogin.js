@@ -3,8 +3,8 @@ class LoginValidator {
     req.check('username', 'Username is required').notEmpty();
     req.check('password', 'Password is required').notEmpty();
     req
-      .check('password', 'Minimum password length is 6 characters')
-      .isLength({ min: 6 });
+      .check('password', 'Minimum password length is 7 characters')
+      .isLength({ min: 7 });
 
     const errors = req.validationErrors();
     const validationErrors = [];

@@ -38,6 +38,17 @@ const Users = {
       return res.status(400).send(error);
     }
   },
+  async getAllUsers(req, res) {
+    const allUsers = 'SELECT * FROM users';
+
+    try {
+      const { rows, rowCount } = await pool.query(allUsers);
+
+      return res.status(200).send({ rows, rowCount });
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  },
 
   async logInUser(req, res) {
     if (!req.body.username || !req.body.password) {

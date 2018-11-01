@@ -7,7 +7,7 @@ class ValidateSignup {
     req.check('password', 'Password is required').notEmpty();
     req.check('position', 'Position is required').notEmpty();
     req.check('password', 'Minimum password length is 6 characters')
-      .isLength({ min: 5 });
+      .isLength({ min: 6 });
     const errors = req.validationErrors();
     const validationErrors = [];
     if (errors) {

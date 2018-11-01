@@ -16,7 +16,7 @@ const Helper = {
       userId: id,
       userPosition: position,
     },
-    process.env.SECRET_KEY, { expiresIn: '3hrs' });
+    process.env.SECRET_KEY, { expiresIn: '15hrs' });
     return token;
   },
 };

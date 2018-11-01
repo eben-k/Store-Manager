@@ -2,7 +2,7 @@ import pool from '../configDb';
 
 const Product = {
   async createProduct(req, res) {
-    const text = 'INSERT INTO products(product_name, product_category, price, quantity, minimum_stock, created_at) VALUES($1, $2, $3, $4, $5, Now()) returning *';
+    const newProduct = 'INSERT INTO products(product_name, product_category, price, quantity, minimum_stock, created_at) VALUES($1, $2, $3, $4, $5, Now()) returning *';
     const values = [
       req.body.product_name,
       req.body.product_category,
@@ -11,7 +11,7 @@ const Product = {
       req.body.minimum_stock,
     ];
     try {
-      const { rows } = await pool.query(text, values);
+      const { rows } = await pool.query(newProduct, values);
       return res.status(201).send(rows[0]);
     } catch (error) {
       return res.status(400).send(error);
@@ -29,10 +29,10 @@ const Product = {
     }
   },
   async getOneProduct(req, res) {
-    const text = 'SELECT * FROM products WHERE id = $1';
+    const oneProduct = 'SELECT * FROM products WHERE id = $1';
 
     try {
-      const { rows } = await pool.query(text, [req.params.prodId]);
+      const { rows } = await pool.query(oneProduct, [req.params.prodId]);
 
       if (!rows[0]) {
         return res.status(404).send({ message: 'product not found' });
@@ -55,7 +55,6 @@ const Product = {
 
     try {
       const { rows } = await pool.query(findProduct, [req.params.prodId]);
-      // console.log();
       if (!rows[0]) {
         return res.status(404).send({ message: 'product not found' });
       }
