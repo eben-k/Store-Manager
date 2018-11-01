@@ -3,7 +3,7 @@ import pool from '../configDb';
 
 const Sales = {
   async createSale(req, res) {
-    const text = 'INSERT INTO sales(attendant, product, quantity_sold, price, total, created_at) VALUES($1, $2, $3, $4, $5, Now())  returning *';
+    const newSale = 'INSERT INTO sales(attendant, product, quantity_sold, price, total, created_at) VALUES($1, $2, $3, $4, $5, Now())  returning *';
 
     const values = [
       req.body.attendant,
@@ -14,7 +14,7 @@ const Sales = {
 
     ];
     try {
-      const { rows } = await pool.query(text, values);
+      const { rows } = await pool.query(newSale, values);
       return res.status(201).send(rows[0]);
     } catch (error) {
       return res.status(400).send(error);
@@ -32,10 +32,10 @@ const Sales = {
     }
   },
   async getSaleRecord(req, res) {
-    const text = 'SELECT * FROM sales WHERE id = $1';
+    const oneSale = 'SELECT * FROM sales WHERE id = $1';
 
     try {
-      const { rows } = await pool.query(text, [req.params.saleId]);
+      const { rows } = await pool.query(oneSale, [req.params.saleId]);
 
       if (!rows[0]) {
         return res.status(404).send({ message: 'record not found' });
