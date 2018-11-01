@@ -14,7 +14,14 @@ app.use(expressValidator());
 
 
 app.use('/', index);
-app.use('*', (req, res) => {
+
+app.all('*', (req, res) => {
+  res.status(404).json({
+    message: 'wrong endpoint: visit api with api/v2/auth/signup',
+  });
+});
+
+app.get('/', (req, res) => {
   res.status(200).json('Welcome to Store Manager!');
 });
 
@@ -22,5 +29,4 @@ app.use('*', (req, res) => {
 dotenv.config();
 
 app.listen(port);
-
 export default app;

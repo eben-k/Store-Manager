@@ -6,11 +6,13 @@
   "scripts": {
     "start": "node dist/app.js",
     "start:dev": "nodemon --exec npm run babel-node -- server/app.js",
-    "test": "nyc mocha --compilers js:babel-register ./test --exit",
+    "test": "npm run dropTable && nyc mocha --compilers js:babel-register ./test --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "build": "rm -rf dist && babel server -d dist --presets=env",
+    "db-build": "psql -U postgres -f server/database/models/database.sql",
     "heroku-postbuild": "npm run build",
-    "babel-node": "babel-node --presets"
+    "babel-node": "babel-node --presets=env",
+    "dropTable": "babel-node ./test/dropTable.js --exit"
   },
   "repository": {
     "type": "git",
@@ -40,6 +42,7 @@
     "supertest": "^3.3.0"
   },
   "dependencies": {
+    "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
     "dotenv": "^6.1.0",
     "express": "^4.16.4",
