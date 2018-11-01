@@ -1,10 +1,9 @@
 class ProductValidator {
   static addProductValidator(req, res, next) {
-    req.check('product_name', 'Product name is required').notEmpty();
-    req.check('product_category', 'Category is required').notEmpty();
-    req.check('quantity', 'Quantity is required as integer').notEmpty().isInt();
-    req.check('minimum_stock', 'Minimum stock is required as integer').notEmpty().isInt();
-    req.check('price', 'Price is required as integer').notEmpty().isInt();
+    req.check('name', 'Product name is required').notEmpty();
+    req.check('category', 'Category is required').notEmpty();
+    req.check('quantity', 'Quantity is required').notEmpty();
+    req.check('price', 'Price is required').notEmpty();
 
     const errors = req.validationErrors();
     const validationErrors = [];
