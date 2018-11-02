@@ -32,18 +32,18 @@ route.get('/api/v1/sales/:saleId', saleController.getSingleRecord);
 route.get('/api/v1/sales', saleController.getSales);
 route.post('/api/v1/sales', addSaleValidator, saleController.createSale);
 
-route.post('/api/v2/products', tokenVerify, addProductValidator, createProduct);
-route.put('/api/v2/products/:prodId', tokenVerify, modifyProduct);
+route.post('/api/v2/products', addProductValidator, createProduct);
+route.put('/api/v2/products/:prodId', modifyProduct);
 route.delete('/api/v2/products/:prodId', tokenVerify, deleteProduct);
-route.get('/api/v2/products', tokenVerify, getAllProducts);
-route.get('/api/v2/products/:prodId', tokenVerify, getOneProduct);
+route.get('/api/v2/products', getAllProducts);
+route.get('/api/v2/products/:prodId', getOneProduct);
 
 route.post('/auth/signup', checkSignup, createUser);
 route.post('/auth/login', checkLogin, logInUser);
 route.get('/auth/users', getAllUsers);
 
-route.post('/api/v2/sales', tokenVerify, addSaleValidator, createSale);
-route.get('/api/v2/sales', tokenVerify, getAllSaleRecords);
-route.get('/api/v2/sales/:saleId', tokenVerify, getSaleRecord);
+route.post('/api/v2/sales', addSaleValidator, createSale);
+route.get('/api/v2/sales', getAllSaleRecords);
+route.get('/api/v2/sales/:saleId', getSaleRecord);
 
 export default route;
