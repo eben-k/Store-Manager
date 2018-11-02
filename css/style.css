@@ -2,7 +2,10 @@ body{
  font: 15px/1.5 Arial, Helvetica, sans-serif;
  padding: 0;
  margin: 0;
-  /* background-color: #f4f4f4; */
+ display: flex;
+ flex-direction: column;
+ min-height: 100vh;
+  
 }
 
 /*Global*/
@@ -14,6 +17,7 @@ body{
 
 main{
     padding-top: 100px;
+    flex: 1;
 }
 
 ul{
@@ -48,7 +52,7 @@ header{
     background: blueviolet;
     color: aliceblue;
     padding-top: 30px;
-    height: 100px;
+    height: 70px;
     border-bottom: black 3px solid;
     width: 100%;
 }
@@ -89,7 +93,7 @@ header #branding{
  }
 
  header .current a{
-    color: orangered;
+    color: aliceblue;
     font-weight: bold; 
  }
 
@@ -103,7 +107,7 @@ header #branding{
  #showcase{
     width: 100%; 
     height: calc(100vh - 100px);
-     background: url(../img/splashed.png) no-repeat 0 -400px;
+     background: url(../img/showcase.png) no-repeat 0 -400px;
      text-align: center;
      color: darkgray;
      display: table;
@@ -121,9 +125,9 @@ header #branding{
      vertical-align: middle;
  }
  
- @media only screen and (min-width: 1000px){
+ @media only screen and (min-width: 1280px){
    .wrapper{
-       width: 1000px;
+       width: 100%;
        margin: 0 auto;
    }
 
@@ -142,16 +146,22 @@ header #branding{
  .login input[type="text"]{
      padding: 4px;
      margin: 10px;
-     height: 25px;
-     width: calc(100% - 20px);
+     height: 45px;
+     width: calc(100% - 40px);
      background-color: #f2f2f2;
      margin-top: 20px;
      border: 1px solid #4d555a;
      border-radius: 5px;
+     font-size: 1.2rem;
  }
 
  .login h2{
   margin-top: 40px;
+  font-size: 2rem;
+  line-height: 1em;
+  padding-bottom: 0;
+  text-transform: uppercase;
+  text-align: center
  }
 
  /* Products */
@@ -171,6 +181,7 @@ header #branding{
     margin-top: 20px;
     border: 1px solid #4d555a;
     border-radius: 5px;
+    font-size: 1.2rem;
 }
 
 table {
@@ -282,12 +293,7 @@ a{
  }
 
  .product-box-square{
-    width: calc(50% - 20px) !important;
- }
-
- .product-box-rectangle{
-    width: calc(50% - 20px) !important;
- }
+    box-sizing: border-box;
 
  
 }
@@ -312,7 +318,8 @@ a{
     background-color: #f2f2f2;
     margin-top: 10px;
     border: 1px solid #4d555a;
-     border-radius: 5px;
+    border-radius: 5px;
+    font-size: 1.2rem;
 }
 
 /* Sales */
@@ -347,9 +354,9 @@ a{
  }
 
  .attendant-details h3{
-    border-bottom:  lightsalmon 2px solid;
-    padding: 15px;
-    font-size: 25px; 
+    font-size: 2rem;
+  line-height: 1em;
+  padding-bottom: 0; 
  }
 
  .attendant-details select{
@@ -357,8 +364,10 @@ a{
     padding: 15px;
     margin: 5px 0 22px 0;
     display: block;
-    border: none;
+    border: 1px solid #4d555a;
+    border-radius: 5px;
     background: #f2f2f2;
+    height: 60px;
  } 
 
  .attendant-details input[type=date]{
@@ -371,6 +380,7 @@ a{
     font-size: 18px;
     border: 1px solid #4d555a;
      border-radius: 5px;
+     font-size: 1.2rem;
 }
 
 
@@ -433,6 +443,7 @@ a{
     background: #f2f2f2;
     border: 1px solid #4d555a;
      border-radius: 5px;
+     font-size: 1.2rem;
  }
  
  .shopping-cart select{
@@ -564,6 +575,8 @@ a{
      color: aliceblue;
      background-color: blueviolet; 
      text-align: center;
+     bottom: 0px;
+     height: 40px;
  }
 
  
@@ -572,3 +585,4 @@ a{
 
 
  
+  }
