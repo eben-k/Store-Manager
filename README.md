@@ -13,8 +13,10 @@ Categorised as a single store use appliation.
 2. [Technologies-Used]
 3. [Application-Features]
 4. [How-to-Use]
-5. [Author]
-6. [License]
+5. [Documentation]
+6. [Author]
+7. [License]
+
 
 ## Hosted App ##
 * [Heroku Link](https://store-mgr.herokuapp.com/)
@@ -74,6 +76,9 @@ To clone and run this application, you must have [Git] and [Node.js] (with npm f
 `POST - localhost:3000/api/v1/auth/login`
 `GET -> localhost:3000/api/v1/auth/:userId`
 `GET -> localhost:3000/api/v1/auth/users`
+
+## Documentation ##
+[API Documentation](https://documenter.getpostman.com/view/5772810/RzZ4q21a)
 
 ## Author ##
 Eben Ennim
